@@ -17,7 +17,7 @@ func (u *RepositoryS) CreateGaji(payloads dto.GajiDto) (dto.GajiDto, error) {
 
 	gaji := model.Gaji{
 		KaryawanId:   payloads.KaryawanId,
-		GajiPokok:    payloads.Bonus,
+		GajiPokok:    payloads.GajiPokok,
 		Bonus:        payloads.Bonus,
 		Pph:          payloads.Pph,
 		GajiDiterima: payloads.GajiDiterima,
