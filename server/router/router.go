@@ -47,6 +47,7 @@ func New(e *echo.Echo, db *gorm.DB) {
 	{
 		gaji.POST("/", controller.CreateGaji)
 		gaji.GET("/:id", controller.GetGajiById)
+		gaji.GET("/karyawan/:id", controller.GetGajiByIdKaryawan)
 		gaji.PUT("/:id", controller.UpdateGaji)
 		gaji.DELETE("/:id", controller.DeleteGaji)
 	}

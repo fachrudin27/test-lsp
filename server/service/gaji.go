@@ -49,6 +49,10 @@ func (s *ServiceS) GetGajiById(payloads dto.GajiDto) (model.Gaji, error) {
 	return s.Repo.GetGajiById(payloads)
 }
 
+func (s *ServiceS) GetGajiByIdKaryawan(payloads dto.GajiDto) ([]model.Gaji, error) {
+	return s.Repo.GetGajiByIdKaryawan(payloads)
+}
+
 func (s *ServiceS) UpdateGaji(payloads dto.GajiDto) (dto.GajiDto, error) {
 
 	karyawanID := dto.KaryawanDto{

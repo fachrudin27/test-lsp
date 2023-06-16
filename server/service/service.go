@@ -22,6 +22,7 @@ type Service interface {
 	GetGajiById(payloads dto.GajiDto) (model.Gaji, error)
 	UpdateGaji(payloads dto.GajiDto) (dto.GajiDto, error)
 	DeleteGaji(payloads dto.GajiDto) error
+	GetGajiByIdKaryawan(payloads dto.GajiDto) ([]model.Gaji, error)
 }
 
 type ServiceS struct {

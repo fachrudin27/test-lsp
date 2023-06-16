@@ -68,6 +68,36 @@ func (u *ControllerS) GetGajiById(c echo.Context) error {
 	})
 }
 
+func (u *ControllerS) GetGajiByIdKaryawan(c echo.Context) error {
+	id := c.Param("id")
+	convId, err := strconv.Atoi(id)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, utils.Response{
+			Message: err.Error(),
+			Code:    http.StatusBadRequest,
+		})
+	}
+
+	payloads := dto.GajiDto{
+		KaryawanId: uint(convId),
+	}
+
+	resp, err := u.Serv.GetGajiByIdKaryawan(payloads)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, utils.Response{
+			Message: err.Error(),
+			Code:    http.StatusInternalServerError,
+		})
+	}
+
+	return c.JSON(http.StatusOK, utils.Response{
+		Message: "success",
+		Code:    http.StatusOK,
+		Data:    resp,
+	})
+}
+
 func (u *ControllerS) UpdateGaji(c echo.Context) error {
 	id := c.Param("id")
 	convId, err := strconv.Atoi(id)

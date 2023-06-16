@@ -43,6 +43,15 @@ func (u *RepositoryS) GetGajiById(payloads dto.GajiDto) (model.Gaji, error) {
 	return gaji, nil
 }
 
+func (u *RepositoryS) GetGajiByIdKaryawan(payloads dto.GajiDto) ([]model.Gaji, error) {
+	gaji := []model.Gaji{}
+	if err := u.db.Model(&model.Gaji{}).Where("karyawan_id = ?", payloads.KaryawanId).Preload("Karyawan").Find(&gaji).Error; err != nil {
+		return gaji, err
+	}
+
+	return gaji, nil
+}
+
 func (u *RepositoryS) UpdateGaji(payloads dto.GajiDto) (dto.GajiDto, error) {
 	convert := payloads.TglGaji
 
