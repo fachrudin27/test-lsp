@@ -7,6 +7,7 @@ import (
 	"github.com/fachrudin27/test-lsp/model"
 )
 
+// Create Jabatan Function
 func (u *RepositoryS) CreateJabatan(payloads dto.JabatanDto) (dto.JabatanDto, error) {
 	jabatan := model.Jabatan{
 		NamaJabatan: payloads.NamaJabatan,
@@ -23,6 +24,7 @@ func (u *RepositoryS) CreateJabatan(payloads dto.JabatanDto) (dto.JabatanDto, er
 	return payloads, nil
 }
 
+// Get All Jabatan Function
 func (u *RepositoryS) GetAllJabatan() ([]model.Jabatan, error) {
 
 	jabatan := []model.Jabatan{}
@@ -34,6 +36,7 @@ func (u *RepositoryS) GetAllJabatan() ([]model.Jabatan, error) {
 	return jabatan, nil
 }
 
+// Update Jabatan Function
 func (u *RepositoryS) UpdateJabatan(payloads dto.JabatanUpdate) (dto.JabatanUpdate, error) {
 	if err := u.db.Model(&model.Jabatan{}).Where("jabatan_id = ?", payloads.JabatanId).Updates(&model.Jabatan{
 		NamaJabatan: payloads.NamaJabatan,
@@ -46,6 +49,7 @@ func (u *RepositoryS) UpdateJabatan(payloads dto.JabatanUpdate) (dto.JabatanUpda
 	return payloads, nil
 }
 
+// Get By Id Jabatan Function
 func (u *RepositoryS) GetJabatanById(payloads dto.JabatanUpdate) (model.Jabatan, error) {
 	jabatan := model.Jabatan{}
 	if err := u.db.Model(&model.Jabatan{}).Where("jabatan_id = ?", payloads.JabatanId).Find(&jabatan).Error; err != nil {
@@ -53,4 +57,13 @@ func (u *RepositoryS) GetJabatanById(payloads dto.JabatanUpdate) (model.Jabatan,
 	}
 
 	return jabatan, nil
+}
+
+// Delete Jabatan Function
+func (u *RepositoryS) DeleteJabatan(payloads dto.JabatanUpdate) error {
+	if err := u.db.Model(&model.Jabatan{}).Where("jabatan_id = ?", payloads.JabatanId).Delete(&model.Jabatan{}).Error; err != nil {
+		return err
+	}
+
+	return nil
 }

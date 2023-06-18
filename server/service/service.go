@@ -17,12 +17,15 @@ type Service interface {
 	GetAllJabatan() ([]model.Jabatan, error)
 	UpdateJabatan(payloads dto.JabatanUpdate) (dto.JabatanUpdate, error)
 	GetJabatanById(payloads dto.JabatanUpdate) (model.Jabatan, error)
+	DeleteJabatan(payloads dto.JabatanUpdate) error
 
 	CreateGaji(payloads dto.GajiDto) (dto.GajiDto, error)
 	GetGajiById(payloads dto.GajiDto) (model.Gaji, error)
 	UpdateGaji(payloads dto.GajiDto) (dto.GajiDto, error)
 	DeleteGaji(payloads dto.GajiDto) error
 	GetGajiByIdKaryawan(payloads dto.GajiDto) ([]model.Gaji, error)
+
+	CreateReport(payloads dto.LaporanDto) ([]dto.LaporanDto, error)
 }
 
 type ServiceS struct {

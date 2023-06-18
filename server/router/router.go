@@ -34,6 +34,7 @@ func New(e *echo.Echo, db *gorm.DB) {
 		jabatan.GET("/:id", controller.GetJabatanById)
 		jabatan.POST("/", controller.CreateJabatan)
 		jabatan.PUT("/:id", controller.UpdateJabatan)
+		jabatan.DELETE("/:id", controller.DeleteJabatan)
 	}
 	karyawan := v1.Group("/karyawan")
 	{
@@ -50,5 +51,9 @@ func New(e *echo.Echo, db *gorm.DB) {
 		gaji.GET("/karyawan/:id", controller.GetGajiByIdKaryawan)
 		gaji.PUT("/:id", controller.UpdateGaji)
 		gaji.DELETE("/:id", controller.DeleteGaji)
+	}
+	laporan := v1.Group("/laporan")
+	{
+		laporan.POST("/", controller.CreateReport)
 	}
 }

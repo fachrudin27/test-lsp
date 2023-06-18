@@ -60,7 +60,7 @@ func (u *RepositoryS) GetKaryawanById(payloads dto.KaryawanDto) (model.Karyawan,
 }
 
 func (u *RepositoryS) DeleteKaryawan(payloads dto.KaryawanDto) error {
-	if err := u.db.Model(&model.Karyawan{}).Where("karyawan_id = ?", payloads.KaryawanID).Delete(&model.Karyawan{}).Error; err != nil {
+	if err := u.db.Model(&model.Karyawan{}).Select("Gaji").Where("karyawan_id = ?", payloads.KaryawanID).Delete(&model.Karyawan{}).Error; err != nil {
 		return err
 	}
 

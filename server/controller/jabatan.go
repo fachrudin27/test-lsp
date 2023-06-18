@@ -129,3 +129,32 @@ func (u *ControllerS) GetJabatanById(c echo.Context) error {
 		Data:    resp,
 	})
 }
+
+func (u *ControllerS) DeleteJabatan(c echo.Context) error {
+	id := c.Param("id")
+	convId, err := strconv.Atoi(id)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, utils.Response{
+			Message: err.Error(),
+			Code:    http.StatusBadRequest,
+		})
+	}
+
+	payloads := dto.JabatanUpdate{
+		JabatanId: uint(convId),
+	}
+
+	err_resp := u.Serv.DeleteJabatan(payloads)
+
+	if err_resp != nil {
+		return c.JSON(http.StatusInternalServerError, utils.Response{
+			Message: err_resp.Error(),
+			Code:    http.StatusInternalServerError,
+		})
+	}
+
+	return c.JSON(http.StatusOK, utils.Response{
+		Message: "success",
+		Code:    http.StatusOK,
+	})
+}

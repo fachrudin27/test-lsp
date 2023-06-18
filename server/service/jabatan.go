@@ -20,3 +20,7 @@ func (s *ServiceS) UpdateJabatan(payloads dto.JabatanUpdate) (dto.JabatanUpdate,
 func (s *ServiceS) GetJabatanById(payloads dto.JabatanUpdate) (model.Jabatan, error) {
 	return s.Repo.GetJabatanById(payloads)
 }
+
+func (s *ServiceS) DeleteJabatan(payloads dto.JabatanUpdate) error {
+	return s.Repo.DeleteJabatan(payloads)
+}
